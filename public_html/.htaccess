@@ -369,21 +369,15 @@ FileETag None
 
 <IfModule mod_rewrite.c>
   Options +FollowSymlinks
-# Options +SymLinksIfOwnerMatch
+  Options +SymLinksIfOwnerMatch
   RewriteEngine On
 
- RewriteBase /
+  RewriteBase /
   RewriteCond %{REQUEST_FILENAME} !-f
   RewriteCond %{REQUEST_FILENAME} !-d
 
   #Redirect all to index.html
-  RewriteRule ^(.*)$ index.php/$1 [L]
-
-  #PUBLIC MODULES ASSETS#
-  RewriteRule .* - [E=MODULES_PATH:modules]
-  #example public/{module}/{asset}/{file}.{extention}
-
-  RewriteRule public/(.*)/(scripts|styles|images|media|fonts)/(.*)$ %{ENV:MODULES_PATH}/$1/$2/$3 [NC]
+  RewriteRule ^(.*)$ index.html?$1 [L]
 
 </IfModule>
 

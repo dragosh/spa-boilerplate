@@ -11,12 +11,14 @@ Project structure for starting a SPA project.
 ### Includes:
 + see **component.json**
 ****
+
 ### TODO
 + create grunt tasks for concat/min/tests/requirejs/server
 + add test-unit library (probably mocha/qunit) and sample test folder
 + add router manager
 + add documentation
 ****
+
 ### ISSUES
 
 ****
