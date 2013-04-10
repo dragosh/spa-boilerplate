@@ -1,18 +1,18 @@
 define([
-	"app",
-	"backbone"
+	'app',
+	'backbone'
 ],
 
 function(app, Backbone) {
-
+    'use strict';
 /*
 |--------------------------------------------------------------------------
 | Extend the global Config
 */
 	var ModuleConfig = {
-        module_prop: "foo"
+        moduleProp: 'foo'
     };
 
-	return _.extend(Config || {} , ModuleConfig);
+	return _.extend(app.config || {} , ModuleConfig);
 
 });

@@ -1,9 +1,10 @@
 define([
-	"app",
-	"backbone"
+	'app',
+	'backbone'
 ],
 
 function(app, Backbone,Config) {
+    'use strict';
 
 	var Models = {};
 

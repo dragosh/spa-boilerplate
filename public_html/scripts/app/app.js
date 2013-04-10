@@ -19,7 +19,8 @@ function(Handlebars) {
     var app = {
 
         root: '/',
-
+        config:{},//Default Configuration
+        dom: {}, //DOM elements
         eventBus: _.extend({}, Backbone.Events), //Event Bus
 
         onDomChangeTitle: function (title) {
