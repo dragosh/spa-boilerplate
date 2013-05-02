@@ -48,25 +48,28 @@ function(Handlebars) {
         manage: true, // Set all View's to be managed by LayoutManager.
 
         fetch: function(path) {
+            var _compile = function(contents) {
+                return (! _.isEmpty(contents) ) ? Handlebars.compile( contents ) : null;
+            };
 
             if (JST[path]) {
                 return JST[path];
             }
             // if is starting with # then fetch it from the DOM
             if(! _.isNull(path.match(/^#(.+)$/))) {
-                JST[path] =  Handlebars.compile( $(path).html() );
+                JST[path] =  _compile($(path).html());
                 return JST[path];
             }
 
             path = 'templates/' + path + '.html';
             // To put this method into async-mode, simply call `async` and store the
             // return value (callback function).
-            var done = this.async();
 
+            var done = this.async();
             $.get(path, function(contents) {
-                JST[path] = Handlebars.compile(contents);
-                //JST[path] = _.template(contents);
+                JST[path] = _compile(contents);
                 done(JST[path]);
+
             }, 'text');
 
         },
