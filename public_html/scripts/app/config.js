@@ -1,40 +1,49 @@
 // Set the require.js configuration for your application.
-require.config({
+'use strict';
 
-	//baseUrl: '',
-	// Initialize the application with the main application file
-	deps: ['main'],
-	paths: {
-		// Bower directory
-		libs: '../components',
-		// Libraries
-		jquery: '../components/jquery/jquery',
-		backbone: '../components/backbone/backbone',
-		underscore: '../components/underscore/underscore',
-		handlebars: '../components/handlebars/handlebars',
-		layoutmanager: '../components/layoutmanager/backbone.layoutmanager'
+var rjsConfig = (function() {
 
-	},
+	var  baseHost =  'http://localhost:9000/scripts/';
 
-	shim: {
-		backbone: {
-			deps: ['underscore', 'jquery'],
-			exports: 'Backbone'
+	return {
+
+		paths: {
+			src : baseHost + 'app/',
+			// Bower directory
+			libs: baseHost + 'components',
+			// Libraries
+			jquery       : baseHost + 'components/jquery/jquery',
+			backbone     : baseHost + 'components/backbone/backbone',
+			underscore   : baseHost + 'components/underscore/underscore',
+			handlebars   : baseHost + 'components/handlebars/handlebars',
+			layoutmanager: baseHost + 'components/layoutmanager/backbone.layoutmanager'
+
 		},
 
-		underscore: {
-			exports: '_'
-		},
+		shim: {
+			backbone: {
+				deps: ['underscore', 'jquery'],
+				exports: 'Backbone'
+			},
 
-		handlebars: {
-			exports: 'Handlebars'
+			underscore: {
+				exports: '_'
+			},
+
+			handlebars: {
+				exports: 'Handlebars'
+			},
+			layoutmanager: {
+				deps: ['backbone', 'jquery']
+			}
 		},
-		layoutmanager: {
-			deps: ['backbone', 'jquery']
+		map: {
+
 		}
-	},
-	map: {
+	};
+})();
 
-	}
-
-});
+if( typeof require === 'function') {
+	rjsConfig.deps = ['main'];
+	require.config(rjsConfig);
+}

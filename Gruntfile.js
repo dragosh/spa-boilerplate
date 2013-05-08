@@ -17,7 +17,7 @@ module.exports = function(grunt) {
 	// configurable paths
 	var spaConfig = {
 		app: 'public_html',
-		test: 'test',
+		test: 'tests',
 		//dist: 'dist'
 	};
 	//Load Tasks
@@ -27,6 +27,7 @@ module.exports = function(grunt) {
 
 		config: spaConfig,
 		pkg: grunt.file.readJSON('package.json'),
+
 		livereload: {
 			port: 35729 // Default livereload listening port.
 		},
@@ -59,7 +60,7 @@ module.exports = function(grunt) {
 */
 		connect: {
 			options: {
-				port: 8070,
+				port: 9000,
 				hostname: '0.0.0.0'
 			},
 			livereload: {
@@ -74,7 +75,7 @@ module.exports = function(grunt) {
 			},
 			test: {
 				options: {
-					port: 8071,
+					port: 9001,
 					middleware: function (connect) {
 						return [
 							mountFolder(connect, spaConfig.test)
@@ -154,16 +155,22 @@ module.exports = function(grunt) {
 	});
 
 	grunt.renameTask('regarde', 'watch');
-	//Tests Task
+
+	//Tests
 	grunt.registerTask('test', [
 		//'jshint',
 		'connect:test',
 		'mocha',
 	]);
-	//Server Task
+	//Server Test
+	grunt.registerTask('server:test', [
+		'connect:livereload',
+		'connect:test:keepalive',
+	]);
+	//Server
 	grunt.registerTask('server', [
 		'compass:server',
-		'livereload-start',
+		//'livereload-start',
 		'connect:livereload',
 		'watch'
 	]);

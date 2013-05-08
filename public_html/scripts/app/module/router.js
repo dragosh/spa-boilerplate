@@ -18,7 +18,7 @@ function(app, Models, Views) {
 
         },
         index: function() {
-
+            alert('index');
         }
 
     });
