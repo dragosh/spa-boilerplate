@@ -1,6 +1,7 @@
-// Set the require.js configuration for your application.
+// Set the require.js configuration for the application.
 'use strict';
 
+// create a config  object to share with the tests specs
 var rjsConfig = (function() {
 
 	var  baseHost =  'http://localhost:9000/scripts/';
@@ -44,6 +45,7 @@ var rjsConfig = (function() {
 })();
 
 if( typeof require === 'function') {
+	//add the main dependencies.
 	rjsConfig.deps = ['main'];
 	require.config(rjsConfig);
 }

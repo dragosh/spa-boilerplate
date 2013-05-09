@@ -13,8 +13,6 @@ Project structure for starting a SPA project.
 ****
 
 ### TODO
-+ create grunt tasks for concat/min/tests/requirejs/server
-+ add test-unit library (probably mocha/qunit) and sample test folder
 + add router manager
 + add documentation
 ****
@@ -23,5 +21,8 @@ Project structure for starting a SPA project.
 
 ****
 ## Change Log:
+### v.0.1.1
++ configure Gruntjs  tasks (default/server(:test)/)
++ add tests folder using mocha and chai + plugins
 ### v.0.1.0
 + first commit
