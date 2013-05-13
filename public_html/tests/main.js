@@ -1,9 +1,6 @@
-'use strict';
-
 require([
     'mocha'
 ], function() {
-
     /*globals mocha */
     mocha.setup('bdd');
 
@@ -13,5 +10,4 @@ require([
 
         mocha.run();
     });
-
 });

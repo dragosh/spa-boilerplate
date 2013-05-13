@@ -2,7 +2,6 @@ define([
     'handlebars', // template engine
     'helpers/handlebars_helper', // template engine helpers
     'layoutmanager', // backbone view manager plugin
-
     //'async/facebook!', // async facebook
     //'async/twitter!' //async twitter
 
@@ -22,7 +21,6 @@ function(Handlebars) {
         config:{},//Default Configuration
         dom: {}, //DOM elements
         eventBus: _.extend({}, Backbone.Events), //Event Bus
-
         onDomChangeTitle: function (title) {
             $(document).attr('title', title);
         }
@@ -64,7 +62,6 @@ function(Handlebars) {
             path = 'templates/' + path + '.html';
             // To put this method into async-mode, simply call `async` and store the
             // return value (callback function).
-
             var done = this.async();
             $.get(path, function(contents) {
                 JST[path] = _compile(contents);
@@ -94,7 +91,7 @@ function(Handlebars) {
 
             if (!/^\//.test(fragment)) { fragment = '/' + fragment; }
 
-            console.log('_trackPageview:' , fragment);
+            //console.log('_trackPageview:' , fragment);
             if (window._gaq !== undefined) { window._gaq.push(['_trackPageview', fragment]); }
 
             return matched;
@@ -107,11 +104,9 @@ function(Handlebars) {
     | Patch Backbone route to trim '/' from the fragment
     */
     (function(_getFragment){
-
         Backbone.History.prototype.getFragment = function(){
             return _getFragment.apply(this, arguments).replace(/^\/+|\/+$/g, '');
         };
-
     })(Backbone.History.prototype.getFragment);
 
     // Mix Backbone.Events, and layout management into the app object.
@@ -121,8 +116,6 @@ function(Handlebars) {
             var defaults = {};
             return new Backbone.Layout(_.extend(defaults, options));
         }
-
-
 
     }, Backbone.Events);
 

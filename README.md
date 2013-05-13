@@ -13,6 +13,7 @@ Project structure for starting a SPA project.
 ****
 
 ### TODO
++ refactoring the app namespace and make it cleaner
 + add router manager
 + add documentation
 ****

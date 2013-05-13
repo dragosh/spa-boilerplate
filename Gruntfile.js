@@ -17,7 +17,7 @@ module.exports = function(grunt) {
 	// configurable paths
 	var spaConfig = {
 		app: 'public_html',
-		test: 'tests',
+		test: 'public_html/tests',
 		//dist: 'dist'
 	};
 	//Load Tasks
@@ -162,11 +162,7 @@ module.exports = function(grunt) {
 		'connect:test',
 		'mocha',
 	]);
-	//Server Test
-	grunt.registerTask('server:test', [
-		'connect:livereload',
-		'connect:test:keepalive',
-	]);
+
 	//Server
 	grunt.registerTask('server', [
 		'compass:server',
@@ -175,7 +171,7 @@ module.exports = function(grunt) {
 		'watch'
 	]);
 	//Build Task
-	//grunt.registerTask('build', []);
+	grunt.registerTask('build', ['requirejs']);
 
 	//Default task
 	//grunt.registerTask('default', []);
