@@ -132,7 +132,20 @@ module.exports = function(grunt) {
 				}
 			}
 		},
-
+		uglify: {
+			options: {
+				banner: '/*! <%= pkg.name %> - v<%= pkg.version %> - ' +
+				'<%= grunt.template.today("yyyy-mm-dd") %> */'
+			},
+			min: {
+				files: {
+					'<%= config.app %>/scripts/script.min.js': [
+						'<%= config.app %>/scripts/components/requirejs/require.js',
+						'<%= config.app %>/scripts/script.min.js'
+					]
+				}
+			}
+		},
 /*
 |--------------------------------------------------------------------------
 | Requirejs
@@ -171,7 +184,7 @@ module.exports = function(grunt) {
 		'watch'
 	]);
 	//Build Task
-	grunt.registerTask('build', ['requirejs']);
+	grunt.registerTask('build', ['requirejs','uglify']);
 
 	//Default task
 	//grunt.registerTask('default', []);
