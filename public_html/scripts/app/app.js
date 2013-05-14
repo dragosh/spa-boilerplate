@@ -14,25 +14,42 @@ function(Handlebars) {
 |   Create the Main app Object Here
 |--------------------------------------------------------------------------
 */
-
-    var app = {
+    var app = new ( Backbone.View.extend({
 
         root: '/',
-        config:{},//Default Configuration
-        dom: {}, //DOM elements
-        eventBus: _.extend({}, Backbone.Events), //Event Bus
+        // listen for the app events
+        initialize: function() {
+
+
+            this.on('domchange:title', this.onDomChangeTitle , this);
+        },
+        // events on the start up
+        events:{
+            'click a:not([data-bypass])': function(ev){
+                //Get the absolute anchor href.
+                var href = { prop: $(ev.currentTarget).prop('href'), attr: $(ev.currentTarget).attr('href') };
+                // Get the absolute root.
+                var root = location.protocol + '//' + location.host + this.root;
+                // Ensure the root is part of the anchor href, meaning it's relative.
+                if (href.prop.slice(0, root.length) === root) {
+                    // If the href exists and is a empty hash exit;
+                    if(href.attr === '#') { return false; }
+                    ev.preventDefault();
+                    href = (Backbone.history.options.pushState === true) ? href.attr : this.root + href.attr;
+                    Backbone.history.navigate(href,  true);
+                }
+            }
+        },
+        //start
+        start: function(Router,bootstrap) {
+            this.router = new Router(bootstrap);
+            Backbone.history.start({ pushState: true});
+        },
         onDomChangeTitle: function (title) {
             $(document).attr('title', title);
         }
-    };
 
-    //Event Aggregator listner
-    //app.eventBus.on('domchange:title', app.onDomChangeTitle , this);
-
-    //Event Aggregator trigger
-    //app.eventBus.trigger('domchange:title', 'New page title');
-
-
+    }))({el:document.body});
 /*
 |--------------------------------------------------------------------------
 |   Don't modify bellow unless you know what you are doing

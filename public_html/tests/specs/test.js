@@ -37,7 +37,7 @@ function(Router,chai, chaijQuery, chaiBackbone) {
 
 
         it('should run here simple route check using chai-backbone', function () {
-            ''.should.route.to(router, 'index');
+            'sample-route'.should.route.to(router, 'sample');
         });
     });
 

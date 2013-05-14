@@ -11,14 +11,19 @@ function(app, Models, Views) {
 
         routes: {
             '': 'index',
+            'sample-route': 'sample', // sample
             '*other': 'index' // 404 page
         },
 
-        initialize: function() {
-
+        initialize: function(bootstrap) {
+            console.log(bootstrap);
         },
         index: function() {
 
+        },
+        sample: function() {
+            //console.log(app);
+            app.trigger('domchange:title', 'New page title');
         }
 
     });
