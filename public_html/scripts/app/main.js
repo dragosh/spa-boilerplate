@@ -1,11 +1,13 @@
 require([
-    'app', //main app
-    'module/router' //main router
+  'app', //App
+  'routes' //Router
 ],
+function(App,routes) {
+  'use strict';
+  var options = {
+    data: [],
+    routes: routes
+  };
 
-function(app, Router) {
-
-    'use strict';
-    app.start(Router, {bootstrap:'Some data from the server'} );
-
+  App.start(options);
 });
