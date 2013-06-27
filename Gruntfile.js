@@ -146,6 +146,13 @@ module.exports = function(grunt) {
 				}
 			}
 		},
+
+		/**
+		 * @todo
+		 */
+		handlebars: {
+			'<%= config.app %>/scripts/templates.js': ['<%= config.app %>/templates/**/*.html']
+		},
 /*
 |--------------------------------------------------------------------------
 | Requirejs
@@ -161,6 +168,7 @@ module.exports = function(grunt) {
 					wrap: false,// Do not wrap everything in an IIFE
 					preserveLicenseComments: false,
 					useStrict: true,
+					stubModules : ['text!']
 					//uglify2: {}
 				}
 			}

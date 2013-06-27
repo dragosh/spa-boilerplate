@@ -1,12 +1,18 @@
+/* globals Marionette */
 define([
   'app', //app
-  'tpl!sample.html'
-
 ],
-function(App,sampleTpl) {
+function(App) {
 
   'use strict';
   var Views = {};
-
+  Views.Menu = Marionette.ItemView.extend({
+    template: App.templates.ModuleTemplate,
+    serializeData: function(){
+      return {
+        'test': 'some value'
+      };
+    }
+  });
   return Views;
 });

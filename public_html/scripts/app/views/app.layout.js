@@ -1,20 +1,21 @@
 /* globals Marionette */
 define([
-  'app', //app
-  'tpl!layout.html'
-
+  'app', //app,
+  'views/sample.views' //Layout
 ],
-function(App,layoutTpl) {
-
+function(App,Views) {
   'use strict';
 
   var Layout = Marionette.Layout.extend({
-
-    template: layoutTpl,
-
+    template: App.templates.AppLayout,
     regions: {
       menu: '#menu',
       content: '#content'
+    },
+    initialize: function(options) {
+      this.render();
+      this.menu.show(new Views.Menu());
+      $(options.el).prepend(this.el);
     }
   });
 

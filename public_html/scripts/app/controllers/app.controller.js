@@ -1,21 +1,19 @@
 /* globals Marionette */
 define([
   'app',
-  'views/app.layout', //Layout
-  'models/sample.models', //Layout
-  'views/sample.views' //Layout
+  'views/app.layout' //Layout
+  //'../models/sample.models', //Layout
 ],
-function(App, AppLayout, Models, Views) {
+function(App, AppLayout,Views) {
 
   'use strict';
 
-  App.layout = new AppLayout();
+  App.layout = new AppLayout({el:'#main'});
 
   var Controller = Marionette.Controller.extend({
 
     initialize: function(options) {
-      App.layout.render();
-      $('#main').prepend(App.layout.el);
+      console.log(this);
       this.stuff = options.stuff;
     },
 

@@ -1,10 +1,14 @@
 define([
   'marionette', //BB Marionete
+  'templates'
 ],
-function (Marionette) {
+function (Marionette, Templates) {
   'use strict';
   //Create the App
-  var App = new Marionette.Application();
+  var App = new Marionette.Application({
+    root: '/',
+    templates: Templates
+  });
 
   // ADD Initializer
   App.addInitializer( function(options) {
@@ -13,7 +17,7 @@ function (Marionette) {
     if(Backbone.history && typeof options.routes === 'function') {
       options.root = options.root || '/';
       //Start the router
-      new options.routes;
+      new options.routes();
       Backbone.history.start();
       //Navigate within the app only on a non external a 'data-attr'
       $(document.body).on('click','a:not([data-external])', function(ev) {

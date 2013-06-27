@@ -1,14 +1,16 @@
 require.config({
 	deps: ['main'],
+
 	paths: {
 		// Libraries
+		//
 		jquery    : '../components/jquery/jquery',
 		backbone  : '../components/backbone/backbone',
 		underscore: '../components/underscore/underscore',
 		handlebars: '../components/handlebars/handlebars',
-		text       : '../components/requirejs-text/text',
-		tpl       : '../components/requirejs-handlebars/hb',
 		marionette: '../components/backbone.marionette/lib/backbone.marionette',
+		tpl       : 'libs/hbtpl',
+		text      : '/scripts/components/requirejs-text/text', // use abspath for build r.js (todo)
 
 	},
 
@@ -31,7 +33,9 @@ require.config({
 		}
 	},
 	tpl: {
-		path : '/templates/'
+		deps: ['text', 'handlebars'],
+		path : '../../templates/',
+		ext : '.html'
 	},
 	map: {
 
