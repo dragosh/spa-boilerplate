@@ -3,6 +3,7 @@ define(function(require){
   return {
     // Layout/Region templates
     AppLayout: require('tpl!layout'),
-    ModuleTemplate: require('tpl!sample')
+    MenuTemplate: require('tpl!partials/menu'),
+    HomeTemplate: require('tpl!home')
   };
 });

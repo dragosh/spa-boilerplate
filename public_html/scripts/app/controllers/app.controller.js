@@ -1,10 +1,14 @@
 /* globals Marionette */
+/*
+|--------------------------------------------------------------------------
+| Main App Controller
+*/
+
 define([
   'app',
   'views/app.layout' //Layout
-  //'../models/sample.models', //Layout
 ],
-function(App, AppLayout,Views) {
+function(App, AppLayout) {
 
   'use strict';
 
@@ -13,17 +17,15 @@ function(App, AppLayout,Views) {
   var Controller = Marionette.Controller.extend({
 
     initialize: function(options) {
-      console.log(this);
       this.stuff = options.stuff;
     },
-
-    sampleRoute: function() {
-
+    items: function() {
 
     },
     doStuff: function(){
       this.trigger('stuff:done', this.stuff);
     }
   });
+
   return Controller;
 });

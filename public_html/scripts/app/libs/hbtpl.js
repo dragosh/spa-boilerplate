@@ -5,19 +5,21 @@ define(['handlebars'], function(Handlebars) {
   return {
     load: function (name, parentRequire, onload, config) {
       var tplExt = (config.ext && config.tpl.ext) || '.html',
-        tplPath = (config.tpl && config.tpl.path) || '';
+          tplPath = (config.tpl && config.tpl.path) || '';
 
 
       if (config.isBuild) {
         var fsPath = config.dirBaseUrl + tplPath + name + tplExt;
+
         buildMap[name] = nodeRequire('fs').readFileSync(fsPath).toString();
         onload();
       } else {
+
         var JST = window.JST ? window.JST : {},
-            path = tplPath + name + tplExt;
+            path =  tplPath + name + tplExt;
         if (JST[path]) {
           // Grunt.js pre-compiles templates into JST[]
-          onload(Handlebars.template(JST[template]));
+          onload(Handlebars.template(JST[path]));
         } else {
           // use text.js plugin when loading templates during development
           parentRequire(['text!' + path ], function(raw) {

@@ -12,5 +12,8 @@
     "backbone.marionette": "~1.0.3",
     "requirejs-handlebars": "~0.0.1",
     "requirejs-text": "~2.0.7"
+  },
+  "devDependencies": {
+    "handlebars": "~1.0.0"
   }
 }

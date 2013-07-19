@@ -1,4 +1,8 @@
 /* globals Marionette */
+/*
+|--------------------------------------------------------------------------
+| App routes & Controller
+*/
 define([
   'app', //App
   'controllers/app.controller'
@@ -11,7 +15,7 @@ function(App,Controller) {
     controller: new Controller(),
 
     appRoutes: {
-      'sample-route': 'sampleRoute'
+      'items': 'items'
     },
     routes: {
       'another-route': 'anotherRoute'

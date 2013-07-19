@@ -12,6 +12,7 @@ var mountFolder = function mountFolder(connect, point) {
 	return connect.static(path.resolve(point));
 };
 
+//grunt.loadNpmTasks('grunt-devtools');
 
 module.exports = function(grunt) {
 	// configurable paths
@@ -141,7 +142,8 @@ module.exports = function(grunt) {
 				files: {
 					'<%= config.app %>/scripts/script.min.js': [
 						'<%= config.app %>/scripts/components/requirejs/require.js',
-						'<%= config.app %>/scripts/script.min.js'
+						'<%= config.app %>/scripts/script.min.js',
+						'<%= config.app %>/scripts/templates.js'
 					]
 				}
 			}
@@ -151,7 +153,17 @@ module.exports = function(grunt) {
 		 * @todo
 		 */
 		handlebars: {
-			'<%= config.app %>/scripts/templates.js': ['<%= config.app %>/templates/**/*.html']
+			compile: {
+				options: {
+					//namespace: 'JST',
+					amd: false,
+					//node: true,
+					wrapped: true
+				},
+				files: {
+					'<%= config.app %>/scripts/templates.js': ['<%= config.app %>/templates/**/*.html']
+				}
+			}
 		},
 /*
 |--------------------------------------------------------------------------
@@ -167,9 +179,7 @@ module.exports = function(grunt) {
 					name: 'config',// Root application module
 					wrap: false,// Do not wrap everything in an IIFE
 					preserveLicenseComments: false,
-					useStrict: true,
-					stubModules : ['text!']
-					//uglify2: {}
+					useStrict: true
 				}
 			}
 		}
@@ -192,9 +202,6 @@ module.exports = function(grunt) {
 		'watch'
 	]);
 	//Build Task
-	grunt.registerTask('build', ['requirejs','uglify']);
-
-	//Default task
-	//grunt.registerTask('default', []);
+	grunt.registerTask('build', ['handlebars','requirejs','uglify']);
 
 };

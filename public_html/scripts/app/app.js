@@ -3,6 +3,7 @@ define([
   'templates'
 ],
 function (Marionette, Templates) {
+
   'use strict';
   //Create the App
   var App = new Marionette.Application({
